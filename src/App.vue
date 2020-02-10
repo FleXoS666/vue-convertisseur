@@ -4,9 +4,14 @@
     <HelloWorld :value="inputValue" :result="result"/>
 
     <form @submit.prevent="updateValue">
-      
+ <!--      <select>
+
+        <option :currency="currency"></option>
+      </select> -->
       <input type="number" name="value" v-model="value">
       <input type="submit" name="" value="Convertir">
+
+      <input type="text" name="inputCurrency" v-model="currency">
     </form>
   </div>
 </template>
@@ -25,18 +30,23 @@ export default {
     'value' :  1,
     'inputValue': null,
     'rate': 0,
+    'currency': 'PHP',
+    'inputCurrency': null,
     'result': null,
   }
 },
 mounted(){
+  
+  console.log(this.currency)
   this.init()
-console.log("ouech")
-
 },
 methods: {
 updateValue(){
+  this.inputCurrency=this.currency
+  this.init()
  this.inputValue = parseFloat(this.value)
-  this.result= this.value * this.rate
+ this.result= this.value * this.rate
+console.log(this.currency)
 },
 init(){
      console.log("start")
@@ -49,10 +59,10 @@ init(){
     request.addEventListener("load", (event) => {
       var dataText=event.target.responseText;
       var data=JSON.parse(dataText); 
-      this.rate= data.rates["USD"];
+      this.rate= data.rates[this.currency];
       // this.rates=data.rates;
       // processConvert();
-      console.log(this);
+      console.log(data.rates[this.currency]);
 
       console.log("updateRate ok");
     });

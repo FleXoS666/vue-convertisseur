@@ -13,6 +13,8 @@ export default {
     rate: Number,
     result: Number,
     inputValue: Number,
+    currency: String,
+    inputCurrency: String
   }
 }
 </script>
