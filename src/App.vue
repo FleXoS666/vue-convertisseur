@@ -46,13 +46,13 @@ init(){
 
 
 
-    request.addEventListener("load", function(event){
+    request.addEventListener("load", (event) => {
       var dataText=event.target.responseText;
       var data=JSON.parse(dataText); 
       this.rate= data.rates["USD"];
       // this.rates=data.rates;
       // processConvert();
-      console.log(this.rate);
+      console.log(this);
 
       console.log("updateRate ok");
     });
