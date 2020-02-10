@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/Money.png" class="image">
-    <HelloWorld :value="value"/>
+    <HelloWorld :value="inputValue" :result="result"/>
 
     <form @submit.prevent="updateValue">
       
       <input type="number" name="value" v-model="value">
-      <input type="submit" name="">
+      <input type="submit" name="" value="Convertir">
     </form>
   </div>
 </template>
@@ -23,13 +23,17 @@ export default {
   data(){
   return{
     'value' :  1,
-    'inputValue': null
+    'inputValue': null,
+    'rate': 0.8,
+    'result': null,
   }
 },
 methods: {
 updateValue(){
-  this.inputValue = this.value
-}
+ this.inputValue = parseFloat(this.value)
+  this.result= this.value * this.rate
+  console.log(this.result)
+},
 }
 }
 </script>
