@@ -24,16 +24,41 @@ export default {
   return{
     'value' :  1,
     'inputValue': null,
-    'rate': 0.8,
+    'rate': 0,
     'result': null,
   }
+},
+mounted(){
+  this.init()
+console.log("ouech")
+
 },
 methods: {
 updateValue(){
  this.inputValue = parseFloat(this.value)
   this.result= this.value * this.rate
-  console.log(this.result)
 },
+init(){
+     console.log("start")
+    var request = new XMLHttpRequest()
+    request.open("GET","https://api.exchangeratesapi.io/latest")
+    
+
+
+
+    request.addEventListener("load", function(event){
+      var dataText=event.target.responseText;
+      var data=JSON.parse(dataText); 
+      this.rate= data.rates["USD"];
+      // this.rates=data.rates;
+      // processConvert();
+      console.log(this.rate);
+
+      console.log("updateRate ok");
+    });
+    request.send();
+    // console.log(request.send())
+    }
 }
 }
 </script>
