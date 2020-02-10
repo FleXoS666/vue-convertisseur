@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/Money.png" class="image">
+    <HelloWorld :value="value"/>
+
+    <form @submit.prevent="updateValue">
+      
+      <input type="number" name="value" v-model="value">
+      <input type="submit" name="">
+    </form>
   </div>
 </template>
 
@@ -12,7 +18,19 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+
+  data(){
+  return{
+    'value' :  1,
+    'inputValue': null
   }
+},
+methods: {
+updateValue(){
+  this.inputValue = this.value
+}
+}
 }
 </script>
 
