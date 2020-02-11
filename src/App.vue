@@ -5,27 +5,20 @@
 <div v-if="rate">
     <img alt="Vue logo" src="./assets/Money.png" class="image">
     <DeviseConverter :baseValue="inputValue" :result="result" :currency="currency"/>
-
-
-    <form @submit.prevent="updateValue" >
-      <select v-model="currency">
-
-        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
-      </select>
-      <input type="number" name="baseValue" v-model="baseValue">
-      <input type="submit" name="" value="Convertir">
-    </form>
+<UserInputForm/>
   </div>
 </div>
 </template>
 
 <script>
 import DeviseConverter from './components/DeviseConverter.vue'
+import UserInputForm from './components/UserInputForm.vue'
 
 export default {
   name: 'App',
   components: {
-    DeviseConverter
+    DeviseConverter,
+    UserInputForm
   },
 
   data(){
@@ -35,7 +28,6 @@ export default {
     'rates': {},
     'currencyKey': {},
     'currency': 'USD',
-    'inputCurrency': null,
     'result': null,
   }
 },
