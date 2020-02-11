@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ baseValue }} €uros</h1>
-    <h2>{{ result }} $$$</h2>
+    <h2>{{ result }} {{ currency }}</h2>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
     result: Number,
     inputValue: Number,
     currency: String,
+    currencyKey: String,
     inputCurrency: String
   }
 }

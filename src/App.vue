@@ -1,18 +1,16 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/Money.png" class="image">
-    <HelloWorld :value="baseValue" :result="result"/>
+    <HelloWorld :baseValue="inputValue" :result="result" :currency="currency"/>
 
 <img src="./assets/loader.gif" v-if="!rate">
     <form @submit.prevent="updateValue" v-if="rate">
-      <select>
+      <select v-model="currency">
 
-        <option v-for="(rate,currencyKey) in rates " :key="currencyKey">{{ currencyKey }} {{ rate }}</option>
+        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" >{{ currencyKey }} ({{ rate }})</option>
       </select>
       <input type="number" name="baseValue" v-model="baseValue">
       <input type="submit" name="" value="Convertir">
-
-      <!-- <input type="text" name="inputCurrency" v-model="currency"> -->
     </form>
   </div>
 </template>
@@ -29,11 +27,11 @@ export default {
   data(){
   return{
     'baseValue' :  1,
-    'inputValue': null,
+    'inputValue': 1,
     'rate': null,
     'rates': {},
     'currencyKey': {},
-    'currency': 'PHP',
+    'currency': 'USD',
     'inputCurrency': null,
     'result': null,
   }
@@ -45,7 +43,7 @@ mounted(){
 },
 methods: {
 updateValue(){
-  // this.inputCurrency=this.currency
+  this.inputCurrency=this.currency
  this.inputValue = parseFloat(this.baseValue)
  this.result= this.baseValue * this.rate
 console.log(this.currency)
