@@ -1,34 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/Money.png" class="image">
-    <HelloWorld :baseValue="inputValue" :result="result" :currency="currency"/>
-
+<h1>Convertisseur de flouze</h1>
 <img src="./assets/loader.gif" v-if="!rate">
-    <form @submit.prevent="updateValue" v-if="rate">
+<div v-if="rate">
+    <img alt="Vue logo" src="./assets/Money.png" class="image">
+    <DeviseConverter :baseValue="inputValue" :result="result" :currency="currency"/>
+
+
+    <form @submit.prevent="updateValue" >
       <select v-model="currency">
 
-        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" >{{ currencyKey }} ({{ rate }})</option>
+        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
       </select>
       <input type="number" name="baseValue" v-model="baseValue">
       <input type="submit" name="" value="Convertir">
     </form>
   </div>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DeviseConverter from './components/DeviseConverter.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    DeviseConverter
   },
 
   data(){
   return{
     'baseValue' :  1,
     'inputValue': 1,
-    'rate': null,
     'rates': {},
     'currencyKey': {},
     'currency': 'USD',
@@ -36,17 +39,25 @@ export default {
     'result': null,
   }
 },
+
+computed: {
+    rate: function(){
+    return this.rates[this.currency]
+    }
+  },
+
 mounted(){
-  
   console.log(this.currency)
   this.init()
 },
+
 methods: {
 updateValue(){
-  this.inputCurrency=this.currency
+ this.inputCurrency=this.currency
  this.inputValue = parseFloat(this.baseValue)
  this.result= this.baseValue * this.rate
 console.log(this.currency)
+console.log(this.rate)
 },
 init(){
      console.log("start")
@@ -55,7 +66,7 @@ init(){
     request.addEventListener("load", (event) => {
       var dataText=event.target.responseText;
       var data=JSON.parse(dataText); 
-      this.rate= data.rates[this.currency];
+      // this.rate= data.rates[this.currency];
       console.log(data.rates)
       this.rates= data.rates;
 

@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <h1>{{ baseValue }} €uros</h1>
-    <h2>{{ result }} {{ currency }}</h2>
+    <h2>{{ baseValue }} €</h2>
+    <h3>{{ result }} {{ currency }}</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'DeviseConverter',
   props: {
     baseValue: Number,
     rate: Number,
@@ -20,10 +20,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h3 {
-  margin: 40px 0 0;
+  margin: 0 0 20px;
 }
 ul {
   list-style-type: none;
