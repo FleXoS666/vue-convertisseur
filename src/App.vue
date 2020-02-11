@@ -52,8 +52,7 @@ mounted(){
 },
 watch:{
 currency: function(){
-
- this.result= this.baseValue * this.rate
+  this.updateValue()
 }
 },
 methods: {
