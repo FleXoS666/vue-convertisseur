@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ value }} €uros</h1>
+    <h1>{{ baseValue }} €uros</h1>
     <h2>{{ result }} $$$</h2>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   name: 'HelloWorld',
   props: {
-    value: Number,
+    baseValue: Number,
     rate: Number,
     result: Number,
     inputValue: Number,
