@@ -50,7 +50,12 @@ mounted(){
   console.log(this.currency)
   this.init()
 },
+watch:{
+currency: function(){
 
+ this.result= this.baseValue * this.rate
+}
+},
 methods: {
 updateValue(){
  this.inputCurrency=this.currency
