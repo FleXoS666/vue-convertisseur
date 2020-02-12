@@ -26,10 +26,11 @@ export default {
   margin:0.75em;
 }
 h3 {
-  margin-bottom:0;
+  margin-bottom:0.1em;
+  height:0.6em;
 }
 h4{
-  margin-top:0.5em;
+  margin:0.2em;
 }
 ul {
   list-style-type: none;
