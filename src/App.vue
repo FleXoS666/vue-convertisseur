@@ -3,9 +3,22 @@
 <h1>Convertisseur de flouze</h1>
 <img src="./assets/loader.gif" v-if="!rate">
 <div v-if="rate">
-    <img alt="Vue logo" src="./assets/Money.png" class="image">
-    <DeviseConverter :baseValue="inputValue" :result="result" :currency="currency"/>
-<UserInputForm/>
+    <img alt="Vue logo" src="./assets/euro.png" class="image">
+    <UserInputForm @inputChanged="updateValue"></UserInputForm>
+    <DeviseConverter :result="result" :currency="currency"/>
+
+
+
+
+ <!-- <form @submit.prevent="updateValue" > -->
+
+      <select v-model="currency">
+
+        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
+      </select>
+      <!-- <input type="number" name="baseValue" v-model="baseValue">
+      <input type="submit" name="" value="Convertir">
+    </form> -->
   </div>
 </div>
 </template>
@@ -24,7 +37,7 @@ export default {
   data(){
   return{
     'baseValue' :  1,
-    'inputValue': 1,
+    // 'inputValue': 1,
     'rates': {},
     'currencyKey': {},
     'currency': 'USD',
@@ -48,12 +61,12 @@ currency: function(){
 }
 },
 methods: {
-updateValue(){
+updateValue(value){
  this.inputCurrency=this.currency
- this.inputValue = parseFloat(this.baseValue)
- this.result= this.baseValue * this.rate
-console.log(this.currency)
-console.log(this.rate)
+
+ this.result= value * this.rate
+// console.log(this.currency)
+// console.log(this.rate)
 },
 init(){
      console.log("start")

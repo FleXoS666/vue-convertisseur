@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h2>{{ baseValue }} €</h2>
+    <h2>{{ baseValue }} </h2>
     <h3>{{ result }} {{ currency }}</h3>
   </div>
 </template>

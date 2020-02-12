@@ -1,12 +1,9 @@
 <template>
   <div class="hello">
+
+
   <form @submit.prevent="updateValue" >
-
-      <!-- <select v-model="currency">
-
-        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
-      </select> -->
-      <input type="number" name="baseValue" v-model="baseValue">
+      <input type="number" name="" v-model="inputValue">
       <input type="submit" name="" value="Convertir">
     </form>
   </div>
@@ -16,13 +13,21 @@
 export default {
   name: 'UserInputForm',
   props: {
-   
     
   }, data(){
     return{
-     "baseValue": 1,
+     "inputValue": 1,
+     
   }
+},
+methods: {
+updateValue(){
+  // this.inputValue = parseFloat(this.baseValue)
+  this.$emit("inputChanged", this.inputValue)
+  console.log(this.inputValue)
 }
+}
+
 }
 </script>
 
