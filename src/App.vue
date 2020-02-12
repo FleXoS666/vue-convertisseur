@@ -47,18 +47,15 @@ computed: {
 
 mounted(){
   console.log(this.currency)
+
   this.init()
-  // this.updateValue()
 },
 
 methods: {
 updateValue(value){
-  this.baseValue=value
-  console.log(this.baseValue)
+  this.baseValue=parseFloat(value)
   this.inputCurrency=this.currency
   this.result= value * this.rate
-// console.log(this.currency)
-// console.log(this.rate)
 },
 init(){
      console.log("start")
@@ -79,15 +76,15 @@ init(){
     },
     updateCurrency(currency){
       this.currency=currency
+      this.updateValue(this.baseValue)
     },
     // updateRates(rate){
     //   this.rate=rate
     // }
-// },watch:{
-//   rates: function(){
-//    // this.rate= this.rates[this.currency]
-//    // this.result= this.baseValue * this.rate
-//       }
+},watch:{
+  rates: function(){
+   this.result= this.baseValue * this.rate
+      }
 }
 }
 </script>

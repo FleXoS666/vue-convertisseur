@@ -1,6 +1,7 @@
 <template>
   <div class="deviseConverter">
     <h3>{{ baseValue }} EUR</h3>
+    <h4>=</h4>
     <h3>{{ result }} {{ currency }}</h3>
   </div>
 </template>
@@ -22,10 +23,13 @@ export default {
 
 <style>
 .deviseConverter{
-  margin:20px;
+  margin:0.75em;
 }
 h3 {
-  margin:20px;
+  margin-bottom:0;
+}
+h4{
+  margin-top:0.5em;
 }
 ul {
   list-style-type: none;
