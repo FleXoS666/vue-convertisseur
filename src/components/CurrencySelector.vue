@@ -1,6 +1,6 @@
 <template>
   <div class="">
-<p>{{ rates }}</p>
+
 <select v-model="currency">
         <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
 </select>
@@ -17,14 +17,26 @@ export default {
   }, 
   data(){
     return{
-    'currency': 'USD',     
+    'currency': 'USD',
+
   }
 },
+watch:{
+currency: function(){
+	this.$emit("currencyChanged", this.currency)
+	console.log(this.currency)
+  // this.updateValue()
+
+}
+},
 methods: {
-
+// updateCurrency(){
+//   this.$emit("currencyChanged", this.currency)
+//   console.log(this.currency)
+}
 }
 
-}
+
 </script>
 
 <style>

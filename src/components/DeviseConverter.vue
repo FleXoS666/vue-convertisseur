@@ -10,7 +10,7 @@ export default {
   name: 'DeviseConverter',
   props: {
     baseValue: Number,
-    
+    rate: Number,
     result: Number,
     inputValue: Number,
     currency: String,

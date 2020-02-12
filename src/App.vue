@@ -6,7 +6,7 @@
     <img alt="Vue logo" src="./assets/euro.png" class="image">
     <UserInputForm @inputChanged="updateValue"></UserInputForm>
     <DeviseConverter :result="result" :currency="currency"/>
-    <CurrencySelector :currency="currency"></CurrencySelector>
+    <CurrencySelector @currencyChanged="updateCurrency" :rates="rates"></CurrencySelector>
  <!-- <form @submit.prevent="updateValue" > -->
 
       <!-- <select v-model="currency">
@@ -47,6 +47,7 @@ export default {
 computed: {
     rate: function(){
     return this.rates[this.currency]
+
     }
   },
 
@@ -54,11 +55,7 @@ mounted(){
   console.log(this.currency)
   this.init()
 },
-watch:{
-currency: function(){
-  this.updateValue()
-}
-},
+
 methods: {
 updateValue(value){
  this.inputCurrency=this.currency
@@ -83,6 +80,11 @@ init(){
     });
     request.send();
     // console.log(request.send())
+    },
+    updateCurrency(currency){
+      this.currency=currency
+
+      // updateValue()
     }
 }
 }
