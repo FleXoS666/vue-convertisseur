@@ -4,18 +4,13 @@
 <img src="./assets/loader.gif" v-if="!rate">
 <div v-if="rate">
     <img alt="Vue logo" src="./assets/euro.png" class="image">
+
     <UserInputForm @inputChanged="updateValue"></UserInputForm>
-    <DeviseConverter :result="result" :currency="currency"/>
-    <CurrencySelector @currencyChanged="updateCurrency" :rates="rates"></CurrencySelector>
- <!-- <form @submit.prevent="updateValue" > -->
+    
+    <CurrencySelector @currencyChanged="updateCurrency"  :rates="rates"></CurrencySelector>
 
-      <!-- <select v-model="currency">
-
-        <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
-      </select> -->
-      <!-- <input type="number" name="baseValue" v-model="baseValue">
-      <input type="submit" name="" value="Convertir">
-    </form> -->
+    <DeviseConverter :result="result" :currency="currency" :baseValue="baseValue"/>
+ 
 </div>
 </div>
 </template>
@@ -36,7 +31,6 @@ export default {
   data(){
   return{
     'baseValue' :  1,
-    // 'inputValue': 1,
     'rates': {},
     'currencyKey': {},
     'currency': 'USD',
@@ -47,20 +41,22 @@ export default {
 computed: {
     rate: function(){
     return this.rates[this.currency]
-
     }
   },
+
 
 mounted(){
   console.log(this.currency)
   this.init()
+  // this.updateValue()
 },
 
 methods: {
 updateValue(value){
- this.inputCurrency=this.currency
-
- this.result= value * this.rate
+  this.baseValue=value
+  console.log(this.baseValue)
+  this.inputCurrency=this.currency
+  this.result= value * this.rate
 // console.log(this.currency)
 // console.log(this.rate)
 },
@@ -83,9 +79,15 @@ init(){
     },
     updateCurrency(currency){
       this.currency=currency
-
-      // updateValue()
-    }
+    },
+    // updateRates(rate){
+    //   this.rate=rate
+    // }
+// },watch:{
+//   rates: function(){
+//    // this.rate= this.rates[this.currency]
+//    // this.result= this.baseValue * this.rate
+//       }
 }
 }
 </script>

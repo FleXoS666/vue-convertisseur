@@ -3,7 +3,7 @@
 
 
   <form @submit.prevent="updateValue" >
-      <input type="number" name="" v-model="inputValue">
+      <input type="number" name="" v-model="inputValue"> €uros
       <input type="submit" name="" value="Convertir">
     </form>
   </div>
@@ -24,7 +24,6 @@ methods: {
 updateValue(){
   // this.inputValue = parseFloat(this.baseValue)
   this.$emit("inputChanged", this.inputValue)
-  console.log(this.inputValue)
 }
 }
 
