@@ -6,32 +6,31 @@
     <img alt="Vue logo" src="./assets/euro.png" class="image">
     <UserInputForm @inputChanged="updateValue"></UserInputForm>
     <DeviseConverter :result="result" :currency="currency"/>
-
-
-
-
+    <CurrencySelector :currency="currency"></CurrencySelector>
  <!-- <form @submit.prevent="updateValue" > -->
 
-      <select v-model="currency">
+      <!-- <select v-model="currency">
 
         <option v-for="(rate,currencyKey) in rates " :key="currencyKey" :value="currencyKey">{{ currencyKey }} ({{ rate }})</option>
-      </select>
+      </select> -->
       <!-- <input type="number" name="baseValue" v-model="baseValue">
       <input type="submit" name="" value="Convertir">
     </form> -->
-  </div>
+</div>
 </div>
 </template>
 
 <script>
 import DeviseConverter from './components/DeviseConverter.vue'
 import UserInputForm from './components/UserInputForm.vue'
+import CurrencySelector from './components/CurrencySelector.vue'
 
 export default {
   name: 'App',
   components: {
     DeviseConverter,
-    UserInputForm
+    UserInputForm,
+    CurrencySelector
   },
 
   data(){
@@ -96,6 +95,6 @@ init(){
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 </style>

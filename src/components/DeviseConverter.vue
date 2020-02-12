@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="">
     <h2>{{ baseValue }} </h2>
     <h3>{{ result }} {{ currency }}</h3>
   </div>
@@ -10,7 +10,7 @@ export default {
   name: 'DeviseConverter',
   props: {
     baseValue: Number,
-    rate: Number,
+    
     result: Number,
     inputValue: Number,
     currency: String,
@@ -34,8 +34,5 @@ li {
 }
 a {
   color: #42b983;
-}
-.image{
- width: 200px;
 }
 </style>
